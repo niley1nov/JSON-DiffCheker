@@ -19,7 +19,7 @@ textarea {
     border-radius: 8px;
     padding: 10px;
     background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     resize: vertical;
 }
 
@@ -35,7 +35,7 @@ button {
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
 }
 
@@ -54,7 +54,8 @@ button:hover {
     overflow: hidden;
 }
 
-.comparison-table th, .comparison-table td {
+.comparison-table th,
+.comparison-table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
@@ -68,4 +69,9 @@ button:hover {
 
 .comparison-table tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+.error {
+    border-color: red;
+    box-shadow: 0 0 5px red;
 }

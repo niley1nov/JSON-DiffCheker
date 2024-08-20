@@ -38,13 +38,29 @@ class DiffChecker {
 }
 
 function compareJson() {
-    const json1 = document.getElementById('jsonInput1').value;
-    const json2 = document.getElementById('jsonInput2').value;
+    const inputBox1 = document.getElementById('jsonInput1');
+    const inputBox2 = document.getElementById('jsonInput2');
+    inputBox1.classList.remove('error');
+    inputBox2.classList.remove('error');
+    const json1 = inputBox1.value;
+    const json2 = inputBox2.value;
     const tbody = document.getElementById('comparisonResults');
     tbody.innerHTML = '';
+
+    let obj1, obj2;
     try {
-        const obj1 = JSON.parse(json1);
-        const obj2 = JSON.parse(json2);
+        obj1 = JSON.parse(json1);
+    } catch (e) {
+        displayError('jsonInput1', 'Error parsing JSON 1: ' + e.message);
+    }
+    try {
+        obj2 = JSON.parse(json2);
+    } catch (e) {
+        displayError('jsonInput2', 'Error parsing JSON 2: ' + e.message);
+        return;
+    }
+
+    try {
         const diffChecker = new DiffChecker(obj1, obj2);
         const differences = diffChecker.compare();
         differences.forEach(diff => {
@@ -60,10 +76,20 @@ function compareJson() {
             }
         });
     } catch (e) {
-        const row = document.createElement('tr');
-        const cell = document.createElement('td');
-        cell.colSpan = 2;
-        cell.textContent = 'Error parsing JSON: ' + e.message;
-        tbody.appendChild(row);
+        displayError(null, 'An error occurred during comparison: ' + e.message); 
+    }
+}
+
+function displayError(inputId, message) {
+    const errorRow = document.createElement('tr');
+    const errorCell = document.createElement('td');
+    errorCell.colSpan = 2;
+    errorCell.textContent = message;
+    errorRow.appendChild(errorCell);
+    document.getElementById('comparisonResults').appendChild(errorRow);
+
+    if(!!inputId) {
+        const errorInput = document.getElementById(inputId);
+        errorInput.classList.add('error');
     }
 }
