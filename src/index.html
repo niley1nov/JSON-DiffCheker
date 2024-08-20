@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JSON Diff Checker</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>JSON Diff Checker</h1>
+        <div class="input-container">
+            <textarea id="jsonInput1" placeholder="Enter JSON 1 here"></textarea>
+            <textarea id="jsonInput2" placeholder="Enter JSON 2 here"></textarea>
+        </div>
+        <div class="button-container">
+            <button onclick="compareJson()">Compare JSONs</button>
+        </div>
+        <div class="results-area">
+            <table class="comparison-table">
+                <thead>
+                    <tr><th>JSON 1 Differences</th><th>JSON 2 Differences</th></tr>
+                </thead>
+                <tbody id="comparisonResults"></tbody>
+            </table>
+        </div>
+        <script src="app.js"></script>
+    </body>
+</html>
